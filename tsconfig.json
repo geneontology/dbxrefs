@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    // Modules and Environment
+    "module": "node16",
+    "moduleResolution": "node16",
+    "moduleDetection": "force",
+    "target": "esnext",
+    "lib": [
+      "ES2022" // Node.js 18
+    ],
+    "resolveJsonModule": false,
+    "noUncheckedSideEffectImports": true,
+    "useDefineForClassFields": true,
+
+    // Emit
+    "outDir": "dist",
+    "declaration": true,
+    "newLine": "lf",
+    "stripInternal": true,
+    "noEmitOnError": true,
+
+    // Type Checking
+    "strict": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noPropertyAccessFromIndexSignature": true,
+
+    // Other
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": ["src"]
+}
