@@ -1,7 +1,4 @@
-import { parse } from "yaml";
-
-const DB_XREFS_URL =
-  "https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml";
+const DB_XREFS_URL = "https://current.geneontology.org/metadata/db-xrefs.json";
 
 // Derived from https://github.com/geneontology/go-site/blob/d911c0ad30dbb2ec333e9d0f63804c8797ed79c2/metadata/db-xrefs.schema.yaml
 interface EntityType {
@@ -97,8 +94,7 @@ async function init() {
         `Failed to fetch dbxrefs: ${response.status} ${response.statusText}`,
       );
     }
-    const body = await response.text();
-    dbxrefs = parse(body) as DBXref[];
+    dbxrefs = (await response.json()) as DBXref[];
     dbReady = true;
     dbError = false;
     return dbxrefs;

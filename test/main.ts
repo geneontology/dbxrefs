@@ -5,23 +5,30 @@ import * as dbxrefs from "../src/main.js";
 
 before(() => {
   mock.method(global, "fetch", async (url: string) => {
-    if (
-      url ===
-      "https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml"
-    ) {
-      return new Response(
-        `
-- database: testdb
-  synonyms:
-    - testdbsyn
-  entity_types:
-    - type_name: gene
-      url_syntax: https://example.com/gene/[example_id]
-    - type_name: protein
-      url_syntax: https://example.com/protein/[example_id]
-    - type_name: no_url_syntax`,
-        { status: 200, headers: { "Content-Type": "application/json" } },
-      );
+    if (url === "https://current.geneontology.org/metadata/db-xrefs.json") {
+      const body = [
+        {
+          database: "testdb",
+          synonyms: ["testdbsyn"],
+          entity_types: [
+            {
+              type_name: "gene",
+              url_syntax: "https://example.com/gene/[example_id]",
+            },
+            {
+              type_name: "protein",
+              url_syntax: "https://example.com/protein/[example_id]",
+            },
+            {
+              type_name: "no_url_syntax",
+            },
+          ],
+        },
+      ];
+      return new Response(JSON.stringify(body), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
     }
     throw new Error("Unexpected URL: " + url);
   });
