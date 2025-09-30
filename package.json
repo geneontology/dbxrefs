@@ -1,6 +1,6 @@
 {
   "name": "@geneontology/dbxrefs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Resolve link outs from database name and ID based on the GO cross-references database.",
   "homepage": "https://github.com/geneontology/dbxrefs",
   "author": {
